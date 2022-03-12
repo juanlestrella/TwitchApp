@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AndroidCapstoneProject</string>
+    <string name="login">Login/Signup</string>
+    <string name="welcome"> WELCOME </string>
+</resources>
