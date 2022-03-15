@@ -5,21 +5,19 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/authFragment">
 
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.android.androidcapstoneproject.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/authFragment"
         android:name="com.example.android.androidcapstoneproject.authentication.AuthFragment"
         android:label="AuthFragment" >
         <action
             android:id="@+id/action_authFragment_to_profileFragment"
-            app:destination="@id/profileFragment"
-            app:popUpTo="com.android.tools.property.panel.api.EnumValue$Companion$LOADING$1@776a9406"
-            app:popUpToInclusive="true" />
+            app:destination="@id/profileFragment" />
     </fragment>
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.example.android.androidcapstoneproject.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.android.androidcapstoneproject.profile.ProfileFragment"
