@@ -7,9 +7,8 @@
 
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.example.android.androidcapstoneproject.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+        android:name="com.example.android.androidcapstoneproject.profile.ProfileActivity"
+        android:label="activity_main"/>
     <fragment
         android:id="@+id/authFragment"
         android:name="com.example.android.androidcapstoneproject.authentication.AuthFragment"
@@ -21,5 +20,10 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.android.androidcapstoneproject.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment">
+        <action
+            android:id="@+id/action_profileFragment_to_authFragment"
+            app:destination="@id/authFragment"
+            app:popUpTo="@id/authFragment" />
+    </fragment>
 </navigation>

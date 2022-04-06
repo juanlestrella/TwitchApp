@@ -17,6 +17,10 @@ import com.example.android.androidcapstoneproject.databinding.AuthenticationBind
 import com.firebase.ui.auth.AuthUI
 
 class AuthFragment : Fragment() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(false)
+    }
 
     companion object {
         const val TAG = "AuthFragment"
@@ -46,7 +50,7 @@ class AuthFragment : Fragment() {
 
         // if user presses the back button, bring them back to home screen
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            navController.popBackStack(R.id.mainActivity, false)
+            navController.popBackStack(R.id.authFragment, false)
         }
 
         // observe the auth state. If logged in, send user to RemindActivity. Else display error message

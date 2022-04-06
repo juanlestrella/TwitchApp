@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/juanl/Documents/UdacityNanodegree/TwitchApp/CapstoneProject/app/src/main/res/layout/activity_auth.xml" value="0.11041666666666666" />
         <entry key="..\:/Users/juanl/Documents/UdacityNanodegree/TwitchApp/CapstoneProject/app/src/main/res/layout/activity_main.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/juanl/Documents/UdacityNanodegree/TwitchApp/CapstoneProject/app/src/main/res/layout/activity_profile.xml" value="0.176" />
+        <entry key="..\:/Users/juanl/Documents/UdacityNanodegree/TwitchApp/CapstoneProject/app/src/main/res/layout/authentication.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/juanl/Documents/UdacityNanodegree/TwitchApp/CapstoneProject/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="..\:/Users/juanl/Documents/UdacityNanodegree/TwitchApp/CapstoneProject/app/src/main/res/menu/main_menu.xml" value="0.7642857142857142" />
       </map>
     </option>
   </component>

@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">AndroidCapstoneProject</string>
     <string name="login">Login/Signup</string>
+    <string name="logout">Logout</string>
     <string name="welcome"> WELCOME </string>
+    <string name="profile_picture"> Profile Picture </string>
+    <string name="username"> Username </string>
+    <string name="total_followers"> Total Followers: %1$d </string>
+    <string name="total_followers_hint"> Total Followers </string>
+    <string name="banned_users"> Banned Users: %1$d </string>
+    <string name="banned_users_hint"> Banned Users </string>
+    <string name="channel_emotes"> Channel Emotes </string>
+    <string name="channel_chat_badges"> Channel Chat Badges </string>
+    <string name="authorization_button"> Twitch Authorize </string>
+
 </resources>
