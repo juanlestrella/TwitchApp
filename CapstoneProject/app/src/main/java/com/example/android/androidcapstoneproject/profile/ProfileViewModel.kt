@@ -8,25 +8,36 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.*
 import com.example.android.androidcapstoneproject.Constants
+import com.example.android.androidcapstoneproject.Users
 import com.example.android.androidcapstoneproject.repository.TwitchRepository
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class ProfileViewModel() : ViewModel() {
+class ProfileViewModel(private val repository: TwitchRepository) : ViewModel() {
 
-    fun twitchAuth(){
-        //startActivity(intent)
-//        viewModelScope.launch {
-//            try {
-//                val result = repository.token.toString()
-//                Log.i("ProfileViewModel", result)
-//            } catch (e: Exception){
-//                Log.e("ProfileViewModel", "twitch authorization")
-//            }
-//        }
-        // rather than calling an apiservice, i need to launch an intent that will open
-        // a browser for the user to give this app an auth
-        // also i need to figure out what the redirected_uri is if local host doesnt work
+    var users: MutableLiveData<Users> = MutableLiveData()
+
+    fun getUsers(){
+        viewModelScope.launch {
+            repository.getUsers()
+            users.value = repository.user.value
+        }
+    }
+
+
+
+
+
+
+    class Factory(private val repository: TwitchRepository) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return ProfileViewModel(repository) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
     }
 
 }
+

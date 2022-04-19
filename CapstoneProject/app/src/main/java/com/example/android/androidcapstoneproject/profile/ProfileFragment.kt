@@ -1,32 +1,35 @@
 package com.example.android.androidcapstoneproject.profile
-
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.androidcapstoneproject.Constants
 import com.example.android.androidcapstoneproject.R
 import com.example.android.androidcapstoneproject.databinding.FragmentProfileBinding
-import com.example.android.androidcapstoneproject.databinding.FragmentProfileBindingImpl
+import com.example.android.androidcapstoneproject.network.MyInterceptor
+import com.example.android.androidcapstoneproject.repository.TwitchRepository
 import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment() {
 
-    private val scope: String = "user:edit"
-    //private val args: ProfileFragmentArgs by navArgs()
+    private val args: ProfileFragmentArgs by navArgs()
+
+    private val repository = TwitchRepository()
+
+    var token: String? = null
 
     private val viewModel: ProfileViewModel by lazy {
-        ViewModelProvider(this).get(ProfileViewModel::class.java)
+        ViewModelProvider(this, ProfileViewModel.Factory(repository)).get(ProfileViewModel::class.java)
+    }
+
+    fun fetchToken(): String? {
+        return token
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,21 +50,43 @@ class ProfileFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.authId.setOnClickListener {
-            Log.i("ProfileFragment", "Clicckeed")
-//            viewModel.twitchAuth()
             val intent = Intent(Intent.ACTION_VIEW)
-            val auth_url = Constants.AUTH_URL +
-                    "client_id=" + Constants.CLIENT_ID +
-                    "&redirect_uri=" + Constants.LOCAL_URL +
+            val authUri = Constants.AUTH_URL +
                     "&response_type=token" +
-                    "&scope=" + scope
+                    "&client_id=" + Constants.CLIENT_ID +
+                    "&redirect_uri=" + Constants.LOCAL_URL +
+                    "&scope=" + Constants.scope
 
-            intent.data = Uri.parse(auth_url)
+            //Log.i("ProfileFragment", authUri)
+            intent.data = Uri.parse(authUri)
             startActivity(intent)
         }
 
-        //val tokenDL = args.token
-        //Log.i("PROFILE FRAGMENT", tokenDL.toString())
+        // this works now, so need to use the tokenDL in viewmodel
+        // to connect to the twitch api with retrofit
+
+//        val scopeDL = args.scope.toString()
+//        binding.channelEmotesId.text = scopeDL
+
+        //binding.username.text = args.toString()
+        //Log.i("ProfileFragment", args.accessToken.toString())
+
+        if(args.accessToken != null){
+
+            token = args.accessToken.toString()
+            binding.channelChatBadgesId.text = token
+
+            Log.i("ProfileFragment", args.accessToken.toString())
+            Log.i("ProfileFragment", token!!)
+
+            viewModel.getUsers()
+
+            viewModel.users.observe( viewLifecycleOwner, Observer {
+
+            })
+        }
+
+
 
         return binding.root
     }

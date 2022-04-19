@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/authFragment">
+    app:startDestination="@id/profileFragment">
 
     <activity
         android:id="@+id/mainActivity"
@@ -25,5 +25,28 @@
             android:id="@+id/action_profileFragment_to_authFragment"
             app:destination="@id/authFragment"
             app:popUpTo="@id/authFragment" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="https://localhost/#access_token={access_token}&amp;scope={scope}&amp;token_type={token_type}" />
+        <argument
+            android:name="scope"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="access_token"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="state"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="token_type"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>
